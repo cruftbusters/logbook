@@ -2,7 +2,8 @@
 
 ## bootstrap
 
-1. add commands to start, resume, or destroy devcontainer
+~~1. add commands to start, resume, or destroy devcontainer~~
+
 1. continuous deploy frontend to logbook.cruftbusters.com
    a. [vite production build](https://vite.dev/guide/build.html)
 1. convert todo to frontend page

@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+
+tag=logbook-devcontainer
+
+if [ -f devcontainer/cidfile ] ; then
+  echo cidfile exists
+  exit 1
+fi
+
+podman build -t $tag .
+
+if [ "$SSH_AUTH_SOCK" = "" ]; then
+  eval $(ssh-agent)
+  ssh-add
+fi
+
+podman run \
+  --cidfile devcontainer/cidfile \
+  --detach \
+  $tag
