@@ -27,3 +27,7 @@ The summarizer reduces a logbook to a statement of accounts. The most simple sum
 1. filter by date (January 2025, this month, month to date, quarter to date, year to date)
 1. timeseries balance and deltas (monthly, quarterly, yearly)
 1. summary arithmetic
+
+## evidence
+
+Logbook is targeted at small business owners and guild operators. For tax or legal benefits it may be appropriate to attach evidence to each transfer. Evidence could be bank or credit card statements, invoices, notices, and more. Evidence could be plain text or a link to an attachment.
