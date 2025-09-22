@@ -6,7 +6,7 @@
 
 1. continuous deploy frontend to logbook.cruftbusters.com
    a. [vite production build](https://vite.dev/guide/build.html)
-1. convert todo to frontend page
+1. convert markdowns to frontend pages
 
 ## editor
 
