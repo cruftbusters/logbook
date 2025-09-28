@@ -24,4 +24,6 @@ COPY ./devcontainer/overrides/.ssh/known_hosts ./.ssh/
 
 COPY devcontainer/overrides/.oh-my-zsh/custom/omz.zsh .oh-my-zsh/custom/
 
-CMD trap : TERM INT; sleep infinity & wait
+COPY devcontainer/run.after /usr/local/bin/
+
+CMD run.after && exec sh -c 'trap : TERM INT; sleep infinity & wait'
