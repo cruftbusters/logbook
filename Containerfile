@@ -2,13 +2,15 @@ FROM mcr.microsoft.com/devcontainers/typescript-node
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y fd-find gh ripgrep screen && \
+    apt-get install -y fd-find gh nginx ripgrep screen && \
     apt-get clean
 
 RUN curl -sfLO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz && \
     tar -C /opt -xzf nvim-linux-x86_64.tar.gz && \
     ln -s /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin && \
     rm nvim-linux-x86_64.tar.gz
+
+COPY ./devcontainer/overrides/sites/logbook.conf /etc/nginx/sites-enabled/
 
 WORKDIR /root
 

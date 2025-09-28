@@ -18,6 +18,7 @@ podman run \
   --cidfile devcontainer/cidfile \
   --detach \
   --env SSH_AUTH_SOCK=$SSH_AUTH_SOCK \
+  --publish 8080:8080 \
   --volume .:/root/logbook \
   --volume $HOME/.gitconfig:/root/.gitconfig.host:ro \
   --volume $(dirname $SSH_AUTH_SOCK):$(dirname $SSH_AUTH_SOCK) \
