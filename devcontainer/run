@@ -7,7 +7,7 @@ if [ -f devcontainer/cidfile ] ; then
   exit 1
 fi
 
-podman build -t $tag .
+podman build --file devcontainer/Containerfile --tag $tag .
 
 if [ "$SSH_AUTH_SOCK" = "" ]; then
   eval $(ssh-agent)
