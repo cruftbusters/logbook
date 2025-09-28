@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/devcontainers/typescript-node
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y gh ripgrep screen && \
+    apt-get install -y fd-find gh ripgrep screen && \
     apt-get clean
 
 RUN curl -sfLO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz && \
