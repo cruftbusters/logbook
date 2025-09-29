@@ -6,6 +6,7 @@
 
 1. continuous deploy frontend to logbook.cruftbusters.com
    a. [vite production build](https://vite.dev/guide/build.html)
+   b. [cloudflare vite plugin](https://developers.cloudflare.com/workers/vite-plugin/tutorial/)
 1. convert markdowns to frontend pages
 
 ## editor
