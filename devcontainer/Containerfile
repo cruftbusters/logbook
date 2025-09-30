@@ -31,6 +31,8 @@ COPY devcontainer/overrides/.oh-my-zsh/custom/omz.zsh .oh-my-zsh/custom/
 
 COPY ./devcontainer/overrides/sites/dev.conf /etc/nginx/sites-enabled/
 
+COPY ./devcontainer/overrides/sites/test.conf /etc/nginx/sites-enabled/
+
 COPY devcontainer/run.after /usr/local/bin/
 
 CMD run.after && exec sh -c 'trap : TERM INT; sleep infinity & wait'
