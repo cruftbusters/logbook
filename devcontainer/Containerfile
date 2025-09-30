@@ -1,9 +1,13 @@
-FROM mcr.microsoft.com/devcontainers/typescript-node
+FROM mcr.microsoft.com/playwright:v1.55.1-noble
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y fd-find gh nginx ripgrep screen && \
+    apt-get install -y fd-find gh less nginx ripgrep screen unzip zsh && \
     apt-get clean
+
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+RUN npm install markdownlint-cli2 --global
 
 RUN curl -sfLO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz && \
     tar -C /opt -xzf nvim-linux-x86_64.tar.gz && \
