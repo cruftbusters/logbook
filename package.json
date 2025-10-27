@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "vitest:bg": "screen -dmS vitest pnpm vitest --ui",
+    "dev:bg": "screen -dmS vite pnpm vite",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
