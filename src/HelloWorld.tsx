@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState } from 'react'
 
 export function HelloWorld({ name }: { name: string }) {
-  const [counter, setCounter] = useState(1);
+  const [counter, setCounter] = useState(1)
   return (
     <div>
       <p>{`Hello ${name} x${counter}!`}</p>
@@ -9,5 +9,5 @@ export function HelloWorld({ name }: { name: string }) {
         Increment
       </button>
     </div>
-  );
+  )
 }
