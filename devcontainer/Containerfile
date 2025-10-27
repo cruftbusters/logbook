@@ -32,9 +32,9 @@ COPY ./devcontainer/overrides/.ssh/known_hosts ./.ssh/
 
 COPY ./devcontainer/overrides/.oh-my-zsh/custom/omz.zsh .oh-my-zsh/custom/
 
-COPY ./devcontainer/overrides/sites/dev.conf /etc/nginx/sites-enabled/
+COPY ./devcontainer/overrides/sites/* /etc/nginx/sites-enabled/
 
-COPY ./devcontainer/overrides/sites/test.conf /etc/nginx/sites-enabled/
+COPY ./devcontainer/overrides/html/* /usr/share/nginx/html/
 
 COPY ./devcontainer/run.after /usr/local/bin/
 
