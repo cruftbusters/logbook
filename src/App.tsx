@@ -1,33 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Fragment } from 'react'
 import './App.css'
+import { useLogbookList } from './useLogbookList'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const list = useLogbookList(() => [
+    { id: '0', name: 'biz' },
+    { id: '1', name: 'personal' },
+  ])
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+      <header>
+        <h1>logbook</h1>
+      </header>
+      <section>
+        <p style={{ display: 'grid', gridGap: '0.25em' }}>
+          <button onClick={() => list.create('new logbook')}>
+            create logbook
+          </button>
+          <button onClick={() => list.reset()}>factory reset</button>
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+        <p
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr auto',
+            gridGap: '0.25em',
+          }}
+        >
+          {list.items.map((item) => (
+            <Fragment key={item.id}>
+              <input
+                value={item.name}
+                onChange={(event) => list.rename(item.id, event.target.value)}
+              />
+              <button onClick={() => list.delete(item.id)}>&times;</button>
+            </Fragment>
+          ))}
+        </p>
+      </section>
     </>
   )
 }
