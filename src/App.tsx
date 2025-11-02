@@ -31,9 +31,9 @@ function App() {
             <Fragment key={item.id}>
               <input
                 value={item.name}
-                onChange={(event) => list.rename(item.id, event.target.value)}
+                onChange={(event) => item.rename(event.target.value)}
               />
-              <button onClick={() => list.delete(item.id)}>&times;</button>
+              <button onClick={() => item.delete()}>&times;</button>
             </Fragment>
           ))}
         </p>

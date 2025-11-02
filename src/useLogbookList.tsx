@@ -4,27 +4,35 @@ import { Logbook } from './types'
 export function useLogbookList(defaultItems: () => Logbook[]) {
   const [items, setItems] = useState(defaultItems)
 
-  const operations = {
+  const listOperations = {
     create: (name: string) => {
       setItems((items) => items.concat({ id: items.length.toString(), name }))
-    },
-    delete: (id: string) => {
-      setItems((items) => items.filter((item) => item.id !== id))
-    },
-    rename: (id: string, name: string) => {
-      setItems((items) =>
-        items.map((item) => {
-          if (item.id === id) {
-            return { ...item, name }
-          }
-          return item
-        }),
-      )
     },
     reset: () => {
       setItems(defaultItems())
     },
   }
 
-  return { items, ...operations }
+  const itemOperations = (operand: Logbook) => {
+    return {
+      delete: () => {
+        setItems((items) => items.filter((item) => item.id !== operand.id))
+      },
+      rename: (name: string) => {
+        setItems((items) =>
+          items.map((item) => {
+            if (item.id === operand.id) {
+              return { ...item, name }
+            }
+            return item
+          }),
+        )
+      },
+    }
+  }
+
+  return {
+    items: items.map((item) => ({ ...item, ...itemOperations(item) })),
+    ...listOperations,
+  }
 }
