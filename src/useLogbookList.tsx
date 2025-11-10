@@ -1,15 +1,20 @@
 import { useState } from 'react'
 import { Logbook } from './types'
 
-export function useLogbookList(defaultItems: () => Logbook[]) {
-  const [items, setItems] = useState(defaultItems)
+const initialState = [
+  { id: '0', name: 'biz' },
+  { id: '1', name: 'personal' },
+]
+
+export function useLogbookList() {
+  const [items, setItems] = useState(initialState)
 
   const listOperations = {
     create: (name: string) => {
       setItems((items) => items.concat({ id: items.length.toString(), name }))
     },
     reset: () => {
-      setItems(defaultItems())
+      setItems(initialState)
     },
   }
 

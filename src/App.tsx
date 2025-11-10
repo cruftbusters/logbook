@@ -3,10 +3,7 @@ import './App.css'
 import { useLogbookList } from './useLogbookList'
 
 function App() {
-  const list = useLogbookList(() => [
-    { id: '0', name: 'biz' },
-    { id: '1', name: 'personal' },
-  ])
+  const list = useLogbookList()
 
   return (
     <>
