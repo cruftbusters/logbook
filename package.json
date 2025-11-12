@@ -6,6 +6,7 @@
   "scripts": {
     "vitest:bg": "screen -dmS vitest pnpm vitest --ui",
     "dev:bg": "screen -dmS vite pnpm vite",
+    "playwright:bg": "screen -dmS playwright pnpm playwright test --ui --ui-host localhost --ui-port 51205",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
@@ -21,6 +22,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^24.10.1",
     "@types/react": "^19.2.4",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",

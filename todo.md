@@ -10,14 +10,24 @@
    a. [vite production build](https://vite.dev/guide/build.html)
    b. [cloudflare vite plugin](https://developers.cloudflare.com/workers/vite-plugin/tutorial/)
 
-## browser
+## browser tests
 
-1. ~~List, create, rename, and delete logbooks~~
+1. ~~add playwright~~
+1. install playwright to devcontainer; From `pnpm create playwright`:
+
+```
+✔ Install Playwright browsers (can be done manually via 'pnpm exec playwright install')? (Y/n) · true
+✔ Install Playwright operating system dependencies (requires sudo / root - can be done manually via 'sudo pnpm exec playwright insta
+```
 
 ## local persistence
 
 1. Logbook modifications are persisted beyond tab close and reopen
 1. If more than one tab is open then only one tab is active; the others are blocked from making changes
+
+## navigator
+
+1. ~~List, create, rename, and delete logbooks~~
 
 ## editor
 
