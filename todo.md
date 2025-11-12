@@ -1,20 +1,28 @@
 # todo
 
-## bootstrap
+## devcontainer
 
 ~~1. add commands to start, resume, or destroy devcontainer~~
+
+## continuous delivery
 
 1. continuous deploy frontend to logbook.cruftbusters.com
    a. [vite production build](https://vite.dev/guide/build.html)
    b. [cloudflare vite plugin](https://developers.cloudflare.com/workers/vite-plugin/tutorial/)
-1. convert markdowns to frontend pages
+
+## browser
+
+1. ~~List, create, rename, and delete logbooks~~
+
+## local persistence
+
+1. Logbook modifications are persisted beyond tab close and reopen
+1. If more than one tab is open then only one tab is active; the others are blocked from making changes
 
 ## editor
 
-The editor enables modifying logbooks, sheets, and transfers. Logbooks are collections of named sheets. Sheets are ordered lists of transfers. Transfers are dated movements of amounts from a credit account to a debit account. Amounts have an optional prefix and optional suffix.
+The editor enables modifying sheets. Logbooks are collections of named sheets. Sheets are ordered lists of transfers. Transfers are dated movements of amounts from a credit account to a debit account. Amounts have an optional prefix and optional suffix.
 
-1. create, rename, and delete logbooks
-1. logbook local persistence
 1. create, rename, and delete sheets
 1. edit transfers
 1. import delimited text to new sheet
@@ -32,3 +40,7 @@ The summarizer reduces a logbook to a statement of accounts. The most simple sum
 ## evidence
 
 Logbook is targeted at small business owners and guild operators. For tax or legal benefits it may be appropriate to attach evidence to each transfer. Evidence could be bank or credit card statements, invoices, notices, and more. Evidence could be plain text or a link to an attachment.
+
+## misc
+
+1. convert markdowns to frontend pages
