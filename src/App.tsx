@@ -24,15 +24,22 @@ function App() {
             gridGap: '0.25em',
           }}
         >
-          {list.items.map((item) => (
-            <Fragment key={item.id}>
-              <input
-                value={item.name}
-                onChange={(event) => item.rename(event.target.value)}
-              />
-              <button onClick={() => item.delete()}>&times;</button>
-            </Fragment>
-          ))}
+          <ul>
+            {list.items.map((item) => (
+              <Fragment key={item.id}>
+                <label>
+                  {item.name}
+                  <input
+                    value={item.name}
+                    onChange={(event) => item.rename(event.target.value)}
+                  />
+                  <button aria-label="delete" onClick={() => item.delete()}>
+                    &times;
+                  </button>
+                </label>
+              </Fragment>
+            ))}
+          </ul>
         </p>
       </section>
     </>
