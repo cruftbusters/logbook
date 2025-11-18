@@ -5,33 +5,28 @@ export function useLogbooks(): [
   LogbookList,
   Dispatch<SetStateAction<LogbookList>>,
 ] {
-  const [list, setList] = useState<LogbookList>([])
+  const [list, setList] = useState<LogbookList>({ items: [] })
+  const [isUserUpdated, setUserUpdated] = useState(false)
 
   useEffect(() => {
     initialList.then(setList)
   }, [])
 
   function persist(action: SetStateAction<LogbookList>) {
-    setList((prevState) => {
-      let items = prevState
-
-      if (typeof action === 'function') {
-        items = action(items)
-      } else {
-        items = action
-      }
-
-      idb.then((database) => {
-        const objectStore = database
-          .transaction('logbook', 'readwrite')
-          .objectStore('logbook')
-
-        objectStore.put({ id: 'list', items })
-      })
-
-      return items
-    })
+    setList(action)
+    setUserUpdated(true)
   }
+
+  useEffect(() => {
+    if (isUserUpdated) {
+      idb.then((database) => {
+        database
+          .transaction('state', 'readwrite')
+          .objectStore('state')
+          .put({ ...list, id: 'logbookList' })
+      })
+    }
+  }, [list, isUserUpdated])
 
   return [list, persist]
 }
@@ -51,7 +46,7 @@ const idb = new Promise<IDBDatabase>((resolve, reject) => {
 
     const migrations = [
       () => {
-        database.createObjectStore('logbook', { keyPath: 'id' })
+        database.createObjectStore('state', { keyPath: 'id' })
       },
     ]
 
@@ -68,9 +63,9 @@ const idb = new Promise<IDBDatabase>((resolve, reject) => {
 const initialList = new Promise<LogbookList>(async (resolve, reject) => {
   const database = await idb
 
-  const objectStore = database.transaction('logbook').objectStore('logbook')
+  const objectStore = database.transaction('state').objectStore('state')
 
-  const request = objectStore.get('list')
+  const request = objectStore.get('logbookList')
 
   request.onerror = () => {
     const message = 'initial list failed to load'
@@ -80,9 +75,9 @@ const initialList = new Promise<LogbookList>(async (resolve, reject) => {
 
   request.onsuccess = () => {
     if (request.result === undefined) {
-      resolve([])
+      resolve({ items: [] })
     } else {
-      resolve(request.result.items)
+      resolve(request.result)
     }
   }
 })

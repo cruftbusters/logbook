@@ -17,12 +17,12 @@ function App() {
 }
 
 function Navigator() {
-  const [logbooks, setLogbooks] = useLogbooks()
+  const [list, setList] = useLogbooks()
 
   function rename(title: string) {
-    setLogbooks((logbooks) => {
-      const [logbook] = logbooks
-      return [{ ...logbook, title }]
+    setList((list) => {
+      const [item] = list.items
+      return { items: [{ ...item, title }] }
     })
   }
 
@@ -31,24 +31,26 @@ function Navigator() {
       <p className="grid-item">
         <button
           onClick={() => {
-            setLogbooks([
-              {
-                title: 'new logbook',
-              },
-            ])
+            setList({
+              items: [
+                {
+                  title: 'new logbook',
+                },
+              ],
+            })
           }}
         >
           create logbook
         </button>
       </p>
-      {logbooks.map((logbook, index) => (
+      {list.items.map((logbook, index) => (
         <ListItem actions={{ rename }} logbook={logbook} key={index} />
       ))}
       <p className="grid-item">
         <button
-          hidden={logbooks.length < 1}
+          hidden={list.items.length < 1}
           onClick={() => {
-            setLogbooks([])
+            setList({ items: [] })
           }}
         >
           clear logbooks
