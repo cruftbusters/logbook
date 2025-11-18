@@ -5,39 +5,35 @@ export function useLogbooks(): [
   LogbookList,
   Dispatch<SetStateAction<LogbookList>>,
 ] {
-  const [logbooks, setLogbooks] = useState<LogbookList>([])
+  const [list, setList] = useState<LogbookList>([])
 
   useEffect(() => {
-    initialLogbooks.then(setLogbooks)
+    initialList.then(setList)
   }, [])
 
-  function persistLogbooks(action: SetStateAction<LogbookList>) {
-    setLogbooks((prevState) => {
-      let logbooks = prevState
+  function persist(action: SetStateAction<LogbookList>) {
+    setList((prevState) => {
+      let items = prevState
 
       if (typeof action === 'function') {
-        logbooks = action(logbooks)
+        items = action(items)
       } else {
-        logbooks = action
+        items = action
       }
 
       idb.then((database) => {
         const objectStore = database
-          .transaction('logbooks', 'readwrite')
-          .objectStore('logbooks')
+          .transaction('logbook', 'readwrite')
+          .objectStore('logbook')
 
-        objectStore.clear()
-
-        for (const logbook of logbooks) {
-          objectStore.add(logbook)
-        }
+        objectStore.put({ id: 'list', items })
       })
 
-      return logbooks
+      return items
     })
   }
 
-  return [logbooks, persistLogbooks]
+  return [list, persist]
 }
 
 const idb = new Promise<IDBDatabase>((resolve, reject) => {
@@ -55,10 +51,7 @@ const idb = new Promise<IDBDatabase>((resolve, reject) => {
 
     const migrations = [
       () => {
-        database.createObjectStore('logbooks', {
-          autoIncrement: true,
-          keyPath: 'id',
-        })
+        database.createObjectStore('logbook', { keyPath: 'id' })
       },
     ]
 
@@ -72,20 +65,24 @@ const idb = new Promise<IDBDatabase>((resolve, reject) => {
   }
 })
 
-const initialLogbooks = idb.then((database) => {
-  const logbooks: LogbookList = []
+const initialList = new Promise<LogbookList>(async (resolve, reject) => {
+  const database = await idb
 
-  const objectStore = database.transaction('logbooks').objectStore('logbooks')
+  const objectStore = database.transaction('logbook').objectStore('logbook')
 
-  const cursor = objectStore.openCursor()
+  const request = objectStore.get('list')
 
-  cursor.onsuccess = () => {
-    const result = cursor.result
-    if (result) {
-      logbooks.push(result.value)
-      result.continue()
-    }
+  request.onerror = () => {
+    const message = 'initial list failed to load'
+    console.error(message, request.error)
+    reject(message)
   }
 
-  return logbooks
+  request.onsuccess = () => {
+    if (request.result === undefined) {
+      resolve([])
+    } else {
+      resolve(request.result.items)
+    }
+  }
 })
