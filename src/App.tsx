@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import { Logbook } from './types'
+import { Actions, Logbook } from './types'
 
 function App() {
   return (
@@ -18,6 +18,17 @@ function App() {
 function Navigator() {
   const [logbooks, setLogbooks] = useState<Logbook[]>([])
 
+  function clear() {
+    setLogbooks([])
+  }
+
+  function rename(title: string) {
+    setLogbooks((logbooks) => {
+      const [logbook] = logbooks
+      return [{ ...logbook, title }]
+    })
+  }
+
   return (
     <>
       <p>
@@ -26,15 +37,6 @@ function Navigator() {
             setLogbooks([
               {
                 title: 'new logbook',
-                delete: () => {
-                  setLogbooks([])
-                },
-                rename: (value) => {
-                  setLogbooks((logbooks) => {
-                    const [logbook] = logbooks
-                    return [{ ...logbook, title: value }]
-                  })
-                },
               },
             ])
           }}
@@ -43,13 +45,19 @@ function Navigator() {
         </button>
       </p>
       {logbooks.map((logbook, index) => (
-        <ListItem logbook={logbook} key={index} />
+        <ListItem actions={{ clear, rename }} logbook={logbook} key={index} />
       ))}
     </>
   )
 }
 
-function ListItem({ logbook }: { logbook: Logbook }) {
+function ListItem({
+  actions,
+  logbook,
+}: {
+  actions: Actions
+  logbook: Logbook
+}) {
   const [isTitleEdit, setTitleEdit] = useState(false)
   const [title, setTitle] = useState(logbook.title)
 
@@ -75,7 +83,7 @@ function ListItem({ logbook }: { logbook: Logbook }) {
       <button
         hidden={!isTitleEdit}
         onClick={() => {
-          logbook.rename(title)
+          actions.rename(title)
           setTitleEdit(false)
         }}
       >
@@ -90,7 +98,7 @@ function ListItem({ logbook }: { logbook: Logbook }) {
       >
         discard
       </button>
-      <button onClick={logbook.delete}>delete</button>
+      <button onClick={actions.clear}>delete</button>
     </li>
   )
 }

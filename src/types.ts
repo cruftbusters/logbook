@@ -1,6 +1,5 @@
-export type Logbook = LogbookData & LogbookMethods
-export type LogbookData = { title: string }
-export type LogbookMethods = {
-  delete: () => void
+export type Actions = {
+  clear: () => void
   rename: (value: string) => void
 }
+export type Logbook = { title: string }
