@@ -13,12 +13,14 @@
 ## browser tests
 
 1. ~~add playwright~~
-1. install playwright to devcontainer; From `pnpm create playwright`:
+1. ~~install playwright to devcontainer~~
 
 ```
 ✔ Install Playwright browsers (can be done manually via 'pnpm exec playwright install')? (Y/n) · true
 ✔ Install Playwright operating system dependencies (requires sudo / root - can be done manually via 'sudo pnpm exec playwright insta
 ```
+
+1. <https://playwright.dev/docs/best-practices#use-chaining-and-filtering>
 
 ## local persistence
 
