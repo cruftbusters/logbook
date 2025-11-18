@@ -31,6 +31,8 @@ test('get started', async ({ page }) => {
     .getByRole('listitem')
     .filter({ hasText: 'books for biz' })
 
+  await page.reload()
+
   await expect(booksForBiz).toBeVisible()
 
   await page.getByRole('button', { name: 'clear' }).click()

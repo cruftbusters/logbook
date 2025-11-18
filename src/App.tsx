@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import './App.css'
 import { Actions, Logbook } from './types'
+import { useLogbooks } from './useLogbooks'
+import './App.css'
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
 }
 
 function Navigator() {
-  const [logbooks, setLogbooks] = useState<Logbook[]>([])
+  const [logbooks, setLogbooks] = useLogbooks()
 
   function rename(title: string) {
     setLogbooks((logbooks) => {
