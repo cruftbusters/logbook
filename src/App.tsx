@@ -18,10 +18,6 @@ function App() {
 function Navigator() {
   const [logbooks, setLogbooks] = useState<Logbook[]>([])
 
-  function clear() {
-    setLogbooks([])
-  }
-
   function rename(title: string) {
     setLogbooks((logbooks) => {
       const [logbook] = logbooks
@@ -31,7 +27,7 @@ function Navigator() {
 
   return (
     <>
-      <p>
+      <p className="grid-item">
         <button
           onClick={() => {
             setLogbooks([
@@ -45,8 +41,18 @@ function Navigator() {
         </button>
       </p>
       {logbooks.map((logbook, index) => (
-        <ListItem actions={{ clear, rename }} logbook={logbook} key={index} />
+        <ListItem actions={{ rename }} logbook={logbook} key={index} />
       ))}
+      <p className="grid-item">
+        <button
+          hidden={logbooks.length < 1}
+          onClick={() => {
+            setLogbooks([])
+          }}
+        >
+          clear logbooks
+        </button>
+      </p>
     </>
   )
 }
@@ -98,7 +104,6 @@ function ListItem({
       >
         discard
       </button>
-      <button onClick={actions.clear}>delete</button>
     </li>
   )
 }

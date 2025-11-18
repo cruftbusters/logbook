@@ -33,7 +33,7 @@ test('get started', async ({ page }) => {
 
   await expect(booksForBiz).toBeVisible()
 
-  await booksForBiz.getByRole('button', { name: 'delete' }).click()
+  await page.getByRole('button', { name: 'clear' }).click()
 
   await expect(booksForBiz).not.toBeVisible()
 })
