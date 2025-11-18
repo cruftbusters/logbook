@@ -1,17 +1,17 @@
 import { Dispatch, SetStateAction, useState, useEffect } from 'react'
-import { Logbook } from './types'
+import { LogbookList } from './types'
 
 export function useLogbooks(): [
-  Logbook[],
-  Dispatch<SetStateAction<Logbook[]>>,
+  LogbookList,
+  Dispatch<SetStateAction<LogbookList>>,
 ] {
-  const [logbooks, setLogbooks] = useState<Logbook[]>([])
+  const [logbooks, setLogbooks] = useState<LogbookList>([])
 
   useEffect(() => {
     initialLogbooks.then(setLogbooks)
   }, [])
 
-  function persistLogbooks(action: SetStateAction<Logbook[]>) {
+  function persistLogbooks(action: SetStateAction<LogbookList>) {
     setLogbooks((prevState) => {
       let logbooks = prevState
 
@@ -73,7 +73,7 @@ const idb = new Promise<IDBDatabase>((resolve, reject) => {
 })
 
 const initialLogbooks = idb.then((database) => {
-  const logbooks: Logbook[] = []
+  const logbooks: LogbookList = []
 
   const objectStore = database.transaction('logbooks').objectStore('logbooks')
 
