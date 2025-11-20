@@ -38,4 +38,6 @@ COPY ./devcontainer/overrides/html/* /usr/share/nginx/html/
 
 COPY ./devcontainer/run.after /usr/local/bin/
 
+RUN bash -c 'mkdir -p /mnt/c/Windows/System32/WindowsPowerShell/v1.0 && touch $_/powershell.exe && chmod +x $_'
+
 CMD run.after && exec sh -c 'trap : TERM INT; sleep infinity & wait'
