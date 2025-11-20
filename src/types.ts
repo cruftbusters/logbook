@@ -1,5 +1,5 @@
 export type Actions = {
-  rename: (value: string) => void
+  rename: (id: string, title: string) => void
 }
-export type Logbook = { title: string }
+export type Logbook = { id: string; title: string }
 export type LogbookList = { items: Logbook[] }

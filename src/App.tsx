@@ -19,40 +19,43 @@ function App() {
 function Navigator() {
   const [list, setList] = useLogbooks()
 
-  function rename(title: string) {
-    setList((list) => {
-      const [item] = list.items
-      return { items: [{ ...item, title }] }
-    })
+  function create() {
+    setList((list) => ({
+      items: [
+        ...list.items,
+        {
+          id: crypto.randomUUID(),
+          title: 'new logbook',
+        },
+      ],
+    }))
+  }
+
+  function rename(id: string, title: string) {
+    setList((list) => ({
+      items: list.items.map((item) => {
+        if (item.id === id) {
+          return { id, title }
+        }
+        return item
+      }),
+    }))
+  }
+
+  function clear() {
+    setList({ items: [] })
   }
 
   return (
     <>
       <p className="grid-item">
-        <button
-          onClick={() => {
-            setList({
-              items: [
-                {
-                  title: 'new logbook',
-                },
-              ],
-            })
-          }}
-        >
-          create logbook
-        </button>
+        <button onClick={create}>create logbook</button>
       </p>
       {list.items.map((logbook, index) => (
-        <ListItem actions={{ rename }} logbook={logbook} key={index} />
+        <ListItem actions={{ rename }} logbook={logbook} key={logbook.id} />
       ))}
       <p className="grid-item">
-        <button
-          hidden={list.items.length < 1}
-          onClick={() => {
-            setList({ items: [] })
-          }}
-        >
+        <button hidden={list.items.length < 1} onClick={clear}>
           clear logbooks
         </button>
       </p>
@@ -92,7 +95,7 @@ function ListItem({
       <button
         hidden={!isTitleEdit}
         onClick={() => {
-          actions.rename(title)
+          actions.rename(logbook.id, title)
           setTitleEdit(false)
         }}
       >
