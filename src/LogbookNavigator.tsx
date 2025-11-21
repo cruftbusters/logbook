@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Logbook } from './types'
 import { useLogbooks } from './useLogbooks'
 
-export function Navigator() {
+export function LogbookNavigator() {
   const { list, status, ...actions } = useLogbooks()
 
   return (
@@ -50,7 +50,7 @@ function ListItem({
       }}
     >
       <span className="like-button" style={{ flex: '1' }} hidden={isTitleEdit}>
-        {logbook.title}
+        <a href={`logbook?id=${logbook.id}`}>{logbook.title}</a>
       </span>
       <button
         hidden={isTitleEdit}
