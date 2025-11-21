@@ -7,7 +7,15 @@ export function useLogbooks() {
   const [isUserUpdated, setUserUpdated] = useState(false)
 
   useEffect(() => {
-    initialList.then(set).then(() => setStatus('loaded from database'))
+    initialList.then((result) => {
+      if (result) {
+        set(result)
+        setStatus('loaded from database')
+      } else {
+        set({ items: [] })
+        setStatus('connected to database')
+      }
+    })
   }, [])
 
   function persist(action: SetStateAction<LogbookList>) {
@@ -101,24 +109,22 @@ const idb = new Promise<IDBDatabase>((resolve, reject) => {
   }
 })
 
-const initialList = new Promise<LogbookList>(async (resolve, reject) => {
-  const database = await idb
+const initialList = new Promise<undefined | LogbookList>(
+  async (resolve, reject) => {
+    const database = await idb
 
-  const objectStore = database.transaction('state').objectStore('state')
+    const objectStore = database.transaction('state').objectStore('state')
 
-  const request = objectStore.get('logbookList')
+    const request = objectStore.get('logbookList')
 
-  request.onerror = () => {
-    const message = 'initial list failed to load'
-    console.error(message, request.error)
-    reject(message)
-  }
+    request.onerror = () => {
+      const message = 'initial list failed to load'
+      console.error(message, request.error)
+      reject(message)
+    }
 
-  request.onsuccess = () => {
-    if (request.result === undefined) {
-      resolve({ items: [] })
-    } else {
+    request.onsuccess = () => {
       resolve(request.result)
     }
-  }
-})
+  },
+)
