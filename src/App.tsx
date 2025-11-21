@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Actions, Logbook } from './types'
+import { Logbook } from './types'
 import { useLogbooks } from './useLogbooks'
 import './App.css'
 
@@ -17,34 +17,7 @@ function App() {
 }
 
 function Navigator() {
-  const [list, setList] = useLogbooks()
-
-  function create() {
-    setList((list) => ({
-      items: [
-        ...list.items,
-        {
-          id: crypto.randomUUID(),
-          title: 'new logbook',
-        },
-      ],
-    }))
-  }
-
-  function rename(id: string, title: string) {
-    setList((list) => ({
-      items: list.items.map((item) => {
-        if (item.id === id) {
-          return { id, title }
-        }
-        return item
-      }),
-    }))
-  }
-
-  function clear() {
-    setList({ items: [] })
-  }
+  const { list, ...actions } = useLogbooks()
 
   return (
     <p
@@ -55,10 +28,14 @@ function Navigator() {
       }}
     >
       {list.items.map((logbook) => (
-        <ListItem actions={{ rename }} logbook={logbook} key={logbook.id} />
+        <ListItem
+          key={logbook.id}
+          logbook={logbook}
+          onrename={(title) => actions.rename(logbook.id, title)}
+        />
       ))}
-      <button onClick={create}>create logbook</button>
-      <button hidden={list.items.length < 1} onClick={clear}>
+      <button onClick={actions.create}>create logbook</button>
+      <button hidden={list.items.length < 1} onClick={actions.clear}>
         clear logbooks
       </button>
     </p>
@@ -66,11 +43,11 @@ function Navigator() {
 }
 
 function ListItem({
-  actions,
   logbook,
+  onrename,
 }: {
-  actions: Actions
   logbook: Logbook
+  onrename: (title: string) => void
 }) {
   const [isTitleEdit, setTitleEdit] = useState(false)
   const [title, setTitle] = useState(logbook.title)
@@ -102,7 +79,7 @@ function ListItem({
       <button
         hidden={!isTitleEdit}
         onClick={() => {
-          actions.rename(logbook.id, title)
+          onrename(title)
           setTitleEdit(false)
         }}
       >

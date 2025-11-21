@@ -1,19 +1,16 @@
-import { Dispatch, SetStateAction, useState, useEffect } from 'react'
+import { SetStateAction, useState, useEffect } from 'react'
 import { LogbookList } from './types'
 
-export function useLogbooks(): [
-  LogbookList,
-  Dispatch<SetStateAction<LogbookList>>,
-] {
-  const [list, setList] = useState<LogbookList>({ items: [] })
+export function useLogbooks() {
+  const [list, set] = useState<LogbookList>({ items: [] })
   const [isUserUpdated, setUserUpdated] = useState(false)
 
   useEffect(() => {
-    initialList.then(setList)
+    initialList.then(set)
   }, [])
 
   function persist(action: SetStateAction<LogbookList>) {
-    setList(action)
+    set(action)
     setUserUpdated(true)
   }
 
@@ -28,7 +25,34 @@ export function useLogbooks(): [
     }
   }, [list, isUserUpdated])
 
-  return [list, persist]
+  return {
+    list,
+    create() {
+      persist((list) => ({
+        items: [
+          ...list.items,
+          {
+            id: crypto.randomUUID(),
+            title: 'new logbook',
+          },
+        ],
+      }))
+    },
+    rename(id: string, title: string) {
+      persist((list) => ({
+        items: list.items.map((item) => {
+          if (item.id === id) {
+            return { id, title }
+          }
+          return item
+        }),
+      }))
+    },
+    clear() {
+      persist({ items: [] })
+    },
+    persist,
+  }
 }
 
 const idb = new Promise<IDBDatabase>((resolve, reject) => {
