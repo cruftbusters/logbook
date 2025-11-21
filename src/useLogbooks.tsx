@@ -2,11 +2,12 @@ import { SetStateAction, useState, useEffect } from 'react'
 import { LogbookList } from './types'
 
 export function useLogbooks() {
+  const [status, setStatus] = useState('loading from database')
   const [list, set] = useState<LogbookList>({ items: [] })
   const [isUserUpdated, setUserUpdated] = useState(false)
 
   useEffect(() => {
-    initialList.then(set)
+    initialList.then(set).then(() => setStatus('loaded from database'))
   }, [])
 
   function persist(action: SetStateAction<LogbookList>) {
@@ -17,16 +18,27 @@ export function useLogbooks() {
   useEffect(() => {
     if (isUserUpdated) {
       idb.then((database) => {
-        database
+        setStatus('saving to database')
+
+        const request = database
           .transaction('state', 'readwrite')
           .objectStore('state')
           .put({ ...list, id: 'logbookList' })
+
+        request.onerror = () => {
+          const message = 'failed to update database'
+          console.error(message, request.error)
+          setStatus(message)
+        }
+
+        request.onsuccess = () => setStatus('saved to database')
       })
     }
   }, [list, isUserUpdated])
 
   return {
     list,
+    status,
     create() {
       persist((list) => ({
         items: [

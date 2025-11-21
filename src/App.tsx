@@ -17,7 +17,7 @@ function App() {
 }
 
 function Navigator() {
-  const { list, ...actions } = useLogbooks()
+  const { list, status, ...actions } = useLogbooks()
 
   return (
     <p
@@ -38,6 +38,7 @@ function Navigator() {
       <button hidden={list.items.length < 1} onClick={actions.clear}>
         clear logbooks
       </button>
+      <span role="status">{status}</span>
     </p>
   )
 }
