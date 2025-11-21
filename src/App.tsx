@@ -31,6 +31,7 @@ function Navigator() {
         <ListItem
           key={logbook.id}
           logbook={logbook}
+          ondelete={() => actions.delete(logbook.id)}
           onrename={(title) => actions.rename(logbook.id, title)}
         />
       ))}
@@ -45,9 +46,11 @@ function Navigator() {
 
 function ListItem({
   logbook,
+  ondelete,
   onrename,
 }: {
   logbook: Logbook
+  ondelete: () => void
   onrename: (title: string) => void
 }) {
   const [isTitleEdit, setTitleEdit] = useState(false)
@@ -95,6 +98,7 @@ function ListItem({
       >
         discard
       </button>
+      <button onClick={ondelete}>delete</button>
     </li>
   )
 }

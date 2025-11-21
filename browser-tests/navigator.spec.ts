@@ -1,8 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('get started - create, rename, and delete two logbooks', async ({
-  page,
-}) => {
+test('logbooks create, rename, and delete', async ({ page }) => {
   await page.goto('http://vite.localhost:8080')
 
   const books = page.getByRole('listitem').filter({ hasText: 'new logbook' })
@@ -52,6 +50,10 @@ test('get started - create, rename, and delete two logbooks', async ({
   await expect(booksForBiz).toBeVisible()
 
   await expect(booksForPersonal).toBeVisible()
+
+  await booksForBiz.getByRole('button', { name: 'delete' }).click()
+
+  await expect(booksForBiz).not.toBeVisible()
 })
 
 test('clear logbooks', async ({ page }) => {

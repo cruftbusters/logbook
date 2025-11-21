@@ -60,6 +60,11 @@ export function useLogbooks() {
         }),
       }))
     },
+    delete(id: string) {
+      persist((list) => ({
+        items: list.items.filter((item) => item.id !== id),
+      }))
+    },
     clear() {
       persist({ items: [] })
     },
