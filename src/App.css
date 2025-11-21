@@ -4,14 +4,3 @@
   padding: 2rem;
   text-align: center;
 }
-
-.zero-margin {
-  margin: 0;
-}
-
-.grid-item {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: auto;
-  grid-gap: 1em;
-}

@@ -47,19 +47,21 @@ function Navigator() {
   }
 
   return (
-    <>
-      <p className="grid-item">
-        <button onClick={create}>create logbook</button>
-      </p>
-      {list.items.map((logbook, index) => (
+    <p
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gridGap: '1em',
+      }}
+    >
+      {list.items.map((logbook) => (
         <ListItem actions={{ rename }} logbook={logbook} key={logbook.id} />
       ))}
-      <p className="grid-item">
-        <button hidden={list.items.length < 1} onClick={clear}>
-          clear logbooks
-        </button>
-      </p>
-    </>
+      <button onClick={create}>create logbook</button>
+      <button hidden={list.items.length < 1} onClick={clear}>
+        clear logbooks
+      </button>
+    </p>
   )
 }
 
@@ -74,10 +76,15 @@ function ListItem({
   const [title, setTitle] = useState(logbook.title)
 
   return (
-    <li className="grid-item">
-      <h2 className="zero-margin" hidden={isTitleEdit}>
+    <li
+      style={{
+        display: 'inherit',
+        gridGap: '1em',
+      }}
+    >
+      <span className="like-button" style={{ flex: '1' }} hidden={isTitleEdit}>
         {logbook.title}
-      </h2>
+      </span>
       <button
         hidden={isTitleEdit}
         onClick={() => {
