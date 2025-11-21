@@ -4,7 +4,6 @@ import { LogbookList } from './types'
 export function useLogbooks() {
   const [status, setStatus] = useState('loading from database')
   const [list, set] = useState<LogbookList>({ items: [] })
-  const [isUserUpdated, setUserUpdated] = useState(false)
 
   useEffect(() => {
     initialList.then((result) => {
@@ -18,13 +17,10 @@ export function useLogbooks() {
     })
   }, [])
 
-  function persist(action: SetStateAction<LogbookList>) {
-    set(action)
-    setUserUpdated(true)
-  }
+  const [isUpdatedByUser, setUpdatedByUser] = useState(false)
 
   useEffect(() => {
-    if (isUserUpdated) {
+    if (isUpdatedByUser) {
       idb.then((database) => {
         setStatus('saving to database')
 
@@ -42,13 +38,18 @@ export function useLogbooks() {
         request.onsuccess = () => setStatus('saved to database')
       })
     }
-  }, [list, isUserUpdated])
+  }, [list, isUpdatedByUser])
+
+  function setByUser(action: SetStateAction<LogbookList>) {
+    set(action)
+    setUpdatedByUser(true)
+  }
 
   return {
     list,
     status,
     create() {
-      persist((list) => ({
+      setByUser((list) => ({
         items: [
           ...list.items,
           {
@@ -59,7 +60,7 @@ export function useLogbooks() {
       }))
     },
     rename(id: string, title: string) {
-      persist((list) => ({
+      setByUser((list) => ({
         items: list.items.map((item) => {
           if (item.id === id) {
             return { id, title }
@@ -69,14 +70,13 @@ export function useLogbooks() {
       }))
     },
     delete(id: string) {
-      persist((list) => ({
+      setByUser((list) => ({
         items: list.items.filter((item) => item.id !== id),
       }))
     },
     clear() {
-      persist({ items: [] })
+      setByUser({ items: [] })
     },
-    persist,
   }
 }
 
