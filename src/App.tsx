@@ -9,7 +9,9 @@ export function App() {
   return (
     <>
       <header>
-        <h1>logbook</h1>
+        <h1>
+          <a href="/">logbook</a>
+        </h1>
       </header>
       <section hidden={path !== ''}>
         <LogbookNavigator />
