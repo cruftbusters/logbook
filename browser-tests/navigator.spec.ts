@@ -1,6 +1,16 @@
 import { test, expect } from '@playwright/test'
 
-test('logbooks create, rename, and delete', async ({ page }) => {
+test('navigate to logbook', async ({ page }) => {
+  await page.goto('http://vite.localhost:8080')
+
+  await page.getByRole('button', { name: 'create logbook' }).click()
+
+  await page.getByRole('link', { name: 'new logbook' }).click()
+
+  await expect(page.getByRole('heading', { name: 'new logbook' })).toBeVisible()
+})
+
+test('create rename delete', async ({ page }) => {
   await page.goto('http://vite.localhost:8080')
 
   const books = page.getByRole('listitem').filter({ hasText: 'new logbook' })
