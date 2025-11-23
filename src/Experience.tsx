@@ -50,7 +50,7 @@ function ListItem({
       }}
     >
       <span className="like-button" style={{ flex: '1' }} hidden={isTitleEdit}>
-        <a href={`logbook?id=${logbook.id}`}>{logbook.title}</a>
+        {logbook.title}
       </span>
       <button
         hidden={isTitleEdit}
