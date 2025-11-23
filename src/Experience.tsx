@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Logbook } from './types'
 import { useLogbooks } from './useLogbooks'
 
-export function LogbookNavigator() {
+export function Experience() {
   const { list, status, ...actions } = useLogbooks()
 
   return (

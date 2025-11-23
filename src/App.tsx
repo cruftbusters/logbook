@@ -1,4 +1,4 @@
-import { LogbookNavigator } from './LogbookNavigator'
+import { Experience } from './Experience'
 import './App.css'
 
 export function App() {
@@ -10,7 +10,7 @@ export function App() {
         </h1>
       </header>
       <section>
-        <LogbookNavigator />
+        <Experience />
       </section>
     </>
   )
