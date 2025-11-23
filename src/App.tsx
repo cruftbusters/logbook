@@ -1,10 +1,7 @@
-import { usePath } from './usePath'
 import { LogbookNavigator } from './LogbookNavigator'
 import './App.css'
 
 export function App() {
-  const path = usePath()
-
   return (
     <>
       <header>
@@ -12,7 +9,7 @@ export function App() {
           <a href="/">logbook</a>
         </h1>
       </header>
-      <section hidden={path !== ''}>
+      <section>
         <LogbookNavigator />
       </section>
     </>
