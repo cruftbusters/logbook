@@ -18,8 +18,13 @@ export function FlexColumn({
     </div>
   )
 }
-export function FlexRow({ children }: PropsWithChildren) {
-  return <div style={{ display: 'flex', gap: 'inherit' }}>{children}</div>
+export function FlexRow({
+  children,
+  style,
+}: PropsWithChildren & { style?: CSSProperties }) {
+  return (
+    <div style={{ gap: 'inherit', ...style, display: 'flex' }}>{children}</div>
+  )
 }
 
 export function List({ children }: PropsWithChildren) {
