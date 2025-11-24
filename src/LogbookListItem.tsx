@@ -55,10 +55,8 @@ export function LogbookListItem({
         >
           discard
         </button>
-      </FlexRow>
-      <FlexRow>
-        <span style={{ flex: '1' }} />
         <button
+          hidden={isTitleEdit}
           onClick={() => {
             setTitleEdit(true)
           }}

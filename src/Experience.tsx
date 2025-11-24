@@ -8,11 +8,19 @@ export function Experience() {
   return (
     <FlexColumn style={{ gap: '1em' }}>
       <FlexRow>
-        <button onClick={actions.create}>create logbook</button>
-        <span role="status" className="like-button">
+        <div role="status" className="like-button" style={{ flex: '1' }}>
           {status}
-        </span>
-        <button hidden={list.items.length < 1} onClick={actions.clear}>
+        </div>
+      </FlexRow>
+      <FlexRow>
+        <button onClick={actions.create} style={{ flex: '1' }}>
+          create logbook
+        </button>
+        <button
+          hidden={list.items.length < 1}
+          onClick={actions.clear}
+          style={{ flex: '1' }}
+        >
           clear logbooks
         </button>
       </FlexRow>
