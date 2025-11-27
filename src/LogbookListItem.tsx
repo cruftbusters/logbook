@@ -17,28 +17,16 @@ export function LogbookListItem({
   return (
     <FlexColumn>
       <FlexRow>
-        <span
-          className="like-button"
-          style={{
-            filter: 'invert()',
-            flex: '1',
-          }}
-          hidden={isTitleEdit}
-        >
-          {logbook.title}
-        </span>
+        <h2 style={{ flex: '1' }}>{logbook.title}</h2>
+      </FlexRow>
+      <FlexRow hidden={!isTitleEdit}>
         <input
           aria-label="name"
           className="like-button"
-          style={{
-            flex: '1',
-          }}
-          hidden={!isTitleEdit}
           onChange={(e) => setTitle(e.target.value)}
           value={title}
         />
         <button
-          hidden={!isTitleEdit}
           onClick={() => {
             onrename(title)
             setTitleEdit(false)
@@ -47,7 +35,6 @@ export function LogbookListItem({
           accept
         </button>
         <button
-          hidden={!isTitleEdit}
           onClick={() => {
             setTitle(logbook.title)
             setTitleEdit(false)
@@ -55,8 +42,9 @@ export function LogbookListItem({
         >
           discard
         </button>
+      </FlexRow>
+      <FlexRow>
         <button
-          hidden={isTitleEdit}
           onClick={() => {
             setTitleEdit(true)
           }}

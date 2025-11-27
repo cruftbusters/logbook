@@ -14,7 +14,7 @@ export function App() {
         </h1>
       </FlexRow>
       <FlexRow>
-        <div role="status" className="like-button" style={{ flex: '1' }}>
+        <div role="status" style={{ flex: '1' }}>
           {status}
         </div>
       </FlexRow>
@@ -22,6 +22,8 @@ export function App() {
         <button onClick={actions.create} style={{ flex: '1' }}>
           create logbook
         </button>
+      </FlexRow>
+      <FlexRow>
         <button
           hidden={list.items.length < 1}
           onClick={actions.clear}

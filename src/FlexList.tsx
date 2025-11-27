@@ -19,12 +19,14 @@ export function FlexColumn({
   )
 }
 export function FlexRow({
-  children,
   style,
-}: PropsWithChildren & { style?: CSSProperties }) {
-  return (
-    <div style={{ gap: 'inherit', ...style, display: 'flex' }}>{children}</div>
-  )
+  ...props
+}: React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+>) {
+  const display = props.hidden ? undefined : 'flex'
+  return <div style={{ gap: 'inherit', display, ...style }} {...props} />
 }
 
 export function List({ children }: PropsWithChildren) {
