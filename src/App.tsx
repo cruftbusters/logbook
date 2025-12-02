@@ -1,6 +1,6 @@
 import { useLogbooks } from './useLogbooks'
 import { FlexRow, FlexColumn, List, ListItem } from './FlexList'
-import { LogbookListItem } from './LogbookListItem'
+import { LogbookExperience } from './LogbookExperience'
 import './App.css'
 
 export function App() {
@@ -38,7 +38,7 @@ export function App() {
             {list.items.map((logbook) => (
               <FlexRow key={logbook.id}>
                 <ListItem>
-                  <LogbookListItem
+                  <LogbookExperience
                     logbook={logbook}
                     ondelete={() => actions.delete(logbook.id)}
                     onrename={(title) => actions.rename(logbook.id, title)}

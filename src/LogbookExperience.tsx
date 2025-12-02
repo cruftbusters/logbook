@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Logbook } from './types'
 import { FlexColumn, FlexRow } from './FlexList'
 
-export function LogbookListItem({
+export function LogbookExperience({
   logbook,
   ondelete,
   onrename,
