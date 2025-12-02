@@ -42,6 +42,9 @@ export function App() {
                     logbook={logbook}
                     ondelete={() => actions.delete(logbook.id)}
                     onrename={(title) => actions.rename(logbook.id, title)}
+                    onsheetchange={(sheet) =>
+                      actions.updateSheet(logbook.id, sheet)
+                    }
                   />
                 </ListItem>
               </FlexRow>

@@ -1,5 +1,5 @@
 import { SetStateAction, useState, useEffect } from 'react'
-import { LogbookList } from './types'
+import { LogbookList, Sheet } from './types'
 import { idb } from './idb'
 
 export function useLogbooks() {
@@ -56,6 +56,7 @@ export function useLogbooks() {
           {
             id: crypto.randomUUID(),
             title: 'new logbook',
+            sheet: [],
           },
         ],
       }))
@@ -64,7 +65,17 @@ export function useLogbooks() {
       setByUser((list) => ({
         items: list.items.map((item) => {
           if (item.id === id) {
-            return { id, title }
+            return { ...item, title }
+          }
+          return item
+        }),
+      }))
+    },
+    updateSheet(id: string, sheet: Sheet) {
+      setByUser((list) => ({
+        items: list.items.map((item) => {
+          if (item.id === id) {
+            return { ...item, sheet }
           }
           return item
         }),
