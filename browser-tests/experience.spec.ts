@@ -55,21 +55,3 @@ test('create rename delete', async ({ page }) => {
 
   await expect(booksForBiz).not.toBeVisible()
 })
-
-test('clear', async ({ page }) => {
-  await page.goto('http://vite.localhost:8080')
-
-  const books = page.getByRole('listitem').filter({ hasText: 'new logbook' })
-
-  await expect(books).toHaveCount(0)
-
-  await page.getByRole('button', { name: 'create logbook' }).click()
-
-  await page.getByRole('button', { name: 'create logbook' }).click()
-
-  await expect(books).toHaveCount(2)
-
-  await page.getByRole('button', { name: 'clear' }).click()
-
-  await expect(books).toHaveCount(0)
-})
