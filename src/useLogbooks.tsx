@@ -75,9 +75,6 @@ export function useLogbooks() {
         items: list.items.filter((item) => item.id !== id),
       }))
     },
-    clear() {
-      setByUser({ items: [] })
-    },
   }
 }
 

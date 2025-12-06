@@ -24,15 +24,6 @@ export function App() {
         </button>
       </FlexRow>
       <FlexRow>
-        <button
-          hidden={list.items.length < 1}
-          onClick={actions.clear}
-          style={{ flex: '1' }}
-        >
-          clear logbooks
-        </button>
-      </FlexRow>
-      <FlexRow>
         <List>
           <FlexColumn>
             {list.items.map((logbook) => (
