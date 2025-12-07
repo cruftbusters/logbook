@@ -54,8 +54,45 @@ export function useLogbooks() {
           {
             id: crypto.randomUUID(),
             title: 'new logbook',
+            sheets: [],
           },
         ],
+      }))
+    },
+    createSheet(id: string) {
+      setByUser((list) => ({
+        items: list.items.map((logbook) => {
+          if (logbook.id === id) {
+            return {
+              ...logbook,
+              sheets: logbook.sheets.concat({
+                id: crypto.randomUUID(),
+                title: 'new sheet',
+              }),
+            }
+          }
+
+          return logbook
+        }),
+      }))
+    },
+    delete(id: string) {
+      setByUser((list) => ({
+        items: list.items.filter((item) => item.id !== id),
+      }))
+    },
+    deleteSheet(id: string, sheetId: string) {
+      setByUser((list) => ({
+        items: list.items.map((logbook) => {
+          if (logbook.id === id) {
+            return {
+              ...logbook,
+              sheets: logbook.sheets.filter((sheet) => sheet.id !== sheetId),
+            }
+          }
+
+          return logbook
+        }),
       }))
     },
     rename(id: string, title: string) {
@@ -66,11 +103,6 @@ export function useLogbooks() {
           }
           return item
         }),
-      }))
-    },
-    delete(id: string) {
-      setByUser((list) => ({
-        items: list.items.filter((item) => item.id !== id),
       }))
     },
   }
@@ -97,6 +129,11 @@ const initialList = new Promise<undefined | LogbookList>(
     }
 
     request.onsuccess = () => {
+      if (request.result !== undefined) {
+        for (const item of request.result.items) {
+          item.sheets = []
+        }
+      }
       resolve(request.result)
     }
   },

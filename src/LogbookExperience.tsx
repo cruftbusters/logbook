@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Actions, Logbook } from './types'
-import { FlexColumn, FlexRow } from './FlexList'
+import { FlexColumn, FlexRow, List, ListItem } from './FlexList'
 
 export function LogbookExperience({
   actions,
@@ -39,16 +39,27 @@ export function LogbookExperience({
           discard
         </button>
       </FlexRow>
-      <FlexRow>
-        <button
-          onClick={() => {
-            setTitleEdit(true)
-          }}
-        >
-          rename
-        </button>
-        <button onClick={() => actions.delete(logbook.id)}>delete</button>
-      </FlexRow>
+      <button
+        onClick={() => {
+          setTitleEdit(true)
+        }}
+      >
+        rename
+      </button>
+      <button onClick={() => actions.delete(logbook.id)}>delete</button>
+      <button onClick={() => actions.createSheet(logbook.id)}>
+        create sheet
+      </button>
+      <List>
+        {logbook.sheets.map((sheet) => (
+          <ListItem key={sheet.id}>
+            <h3>{sheet.title}</h3>
+            <button onClick={() => actions.deleteSheet(logbook.id, sheet.id)}>
+              delete
+            </button>
+          </ListItem>
+        ))}
+      </List>
     </FlexColumn>
   )
 }
