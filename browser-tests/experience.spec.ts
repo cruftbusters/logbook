@@ -93,6 +93,12 @@ test('manage sheets', async ({ page }) => {
 
   await books.getByRole('button', { name: 'create sheet' }).click()
 
+  await expect(
+    page.getByRole('status').filter({ hasText: 'saved to database' }),
+  ).toBeVisible()
+
+  await page.reload()
+
   await expect(sheet).toBeVisible()
 
   await sheet.getByRole('button', { name: 'delete' }).click()

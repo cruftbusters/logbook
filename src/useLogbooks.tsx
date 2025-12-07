@@ -150,7 +150,9 @@ const initialList = new Promise<undefined | LogbookList>(
     request.onsuccess = () => {
       if (request.result !== undefined) {
         for (const item of request.result.items) {
-          item.sheets = []
+          if (item.sheets === undefined) {
+            item.sheets = []
+          }
         }
       }
       resolve(request.result)
