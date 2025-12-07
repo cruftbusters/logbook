@@ -31,7 +31,6 @@ export function FlexRow({
       style={{
         display,
         gap: 'inherit',
-        justifyContent: 'center',
         ...style,
       }}
       {...props}
