@@ -8,21 +8,11 @@ export function App() {
 
   return (
     <FlexColumn style={{ gap: '1em' }}>
-      <FlexRow>
-        <h1 style={{ flex: '1' }}>
-          <a href="/">logbook</a>
-        </h1>
-      </FlexRow>
-      <FlexRow>
-        <div role="status" style={{ flex: '1' }}>
-          {status}
-        </div>
-      </FlexRow>
-      <FlexRow>
-        <button onClick={actions.create} style={{ flex: '1' }}>
-          create logbook
-        </button>
-      </FlexRow>
+      <h1>
+        <a href="/">logbook</a>
+      </h1>
+      <div role="status">{status}</div>
+      <button onClick={actions.create}>create logbook</button>
       <FlexRow>
         <List>
           <FlexColumn>

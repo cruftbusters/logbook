@@ -16,9 +16,7 @@ export function LogbookExperience({
 
   return (
     <FlexColumn>
-      <FlexRow>
-        <h2 style={{ flex: '1' }}>{logbook.title}</h2>
-      </FlexRow>
+      <h2>{logbook.title}</h2>
       <FlexRow hidden={!isTitleEdit}>
         <input
           aria-label="name"
