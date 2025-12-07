@@ -31,6 +31,10 @@ test('create rename delete', async ({ page }) => {
     .getByRole('listitem')
     .filter({ hasText: 'books for biz' })
 
+  await expect(
+    page.getByRole('status').filter({ hasText: 'saved to database' }),
+  ).toBeVisible()
+
   await page.reload()
 
   await page.getByRole('button', { name: 'create logbook' }).click()
