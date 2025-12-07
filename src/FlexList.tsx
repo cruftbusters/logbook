@@ -26,7 +26,17 @@ export function FlexRow({
   HTMLDivElement
 >) {
   const display = props.hidden ? undefined : 'flex'
-  return <div style={{ gap: 'inherit', display, ...style }} {...props} />
+  return (
+    <div
+      style={{
+        display,
+        gap: 'inherit',
+        justifyContent: 'center',
+        ...style,
+      }}
+      {...props}
+    />
+  )
 }
 
 export function List({ children }: PropsWithChildren) {

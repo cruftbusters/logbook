@@ -12,7 +12,9 @@ export function App() {
         <a href="/">logbook</a>
       </h1>
       <div role="status">{status}</div>
-      <button onClick={actions.create}>create logbook</button>
+      <div>
+        <button onClick={actions.create}>create logbook</button>
+      </div>
       <FlexRow>
         <List>
           <FlexColumn>

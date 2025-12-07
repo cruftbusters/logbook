@@ -39,17 +39,19 @@ export function LogbookExperience({
           discard
         </button>
       </FlexRow>
-      <button
-        onClick={() => {
-          setTitleEdit(true)
-        }}
-      >
-        rename
-      </button>
-      <button onClick={() => actions.delete(logbook.id)}>delete</button>
-      <button onClick={() => actions.createSheet(logbook.id)}>
-        create sheet
-      </button>
+      <FlexRow>
+        <button
+          onClick={() => {
+            setTitleEdit(true)
+          }}
+        >
+          rename
+        </button>
+        <button onClick={() => actions.delete(logbook.id)}>delete</button>
+        <button onClick={() => actions.createSheet(logbook.id)}>
+          create sheet
+        </button>
+      </FlexRow>
       <List>
         {logbook.sheets.map((sheet) => (
           <ListItem key={sheet.id}>
