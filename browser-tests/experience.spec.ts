@@ -75,7 +75,25 @@ test('manage sheets', async ({ page }) => {
 
   await expect(sheet).toBeVisible()
 
-  await sheet.getByRole('button', { name: 'delete' }).click()
+  await sheet.getByRole('button', { name: 'rename' }).click()
+
+  await sheet.getByRole('textbox', { name: 'name' }).fill('oops typo')
+
+  await sheet.getByRole('button', { name: 'discard' }).click()
+
+  await expect(sheet).toBeVisible()
+
+  await sheet.getByRole('button', { name: 'rename' }).click()
+
+  await sheet.getByRole('textbox', { name: 'name' }).fill('bank statements')
+
+  await sheet.getByRole('button', { name: 'accept' }).click()
 
   await expect(sheet).not.toBeVisible()
+
+  await books.getByRole('button', { name: 'create sheet' }).click()
+
+  await expect(sheet).toBeVisible()
+
+  await sheet.getByRole('button', { name: 'delete' }).click()
 })

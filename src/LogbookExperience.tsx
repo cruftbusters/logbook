@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Actions, Logbook } from './types'
 import { FlexColumn, FlexRow, List, ListItem } from './FlexList'
+import { SheetExperience } from './SheetExperience'
 
 export function LogbookExperience({
   actions,
@@ -55,10 +56,11 @@ export function LogbookExperience({
       <List>
         {logbook.sheets.map((sheet) => (
           <ListItem key={sheet.id}>
-            <h3>{sheet.title}</h3>
-            <button onClick={() => actions.deleteSheet(logbook.id, sheet.id)}>
-              delete
-            </button>
+            <SheetExperience
+              actions={actions}
+              logbook={logbook}
+              sheet={sheet}
+            />
           </ListItem>
         ))}
       </List>

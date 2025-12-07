@@ -4,6 +4,7 @@ export interface Actions {
   delete(id: string): void
   deleteSheet(id: string, sheetId: any): void
   rename(id: string, title: string): void
+  renameSheet(id: string, id1: string, title: string): void
 }
 
 export type LogbookList = { items: Logbook[] }

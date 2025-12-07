@@ -105,6 +105,25 @@ export function useLogbooks() {
         }),
       }))
     },
+    renameSheet(id: string, sheetId: string, title: string) {
+      setByUser((list) => ({
+        items: list.items.map((item) => {
+          if (item.id === id) {
+            return {
+              ...item,
+              sheets: item.sheets.map((sheet) => {
+                if (sheet.id === sheetId) {
+                  return { ...sheet, title }
+                }
+
+                return sheet
+              }),
+            }
+          }
+          return item
+        }),
+      }))
+    },
   }
 
   return {
