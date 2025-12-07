@@ -1,15 +1,13 @@
 import { useState } from 'react'
-import { Logbook } from './types'
+import { Actions, Logbook } from './types'
 import { FlexColumn, FlexRow } from './FlexList'
 
 export function LogbookExperience({
+  actions,
   logbook,
-  ondelete,
-  onrename,
 }: {
+  actions: Actions
   logbook: Logbook
-  ondelete: () => void
-  onrename: (title: string) => void
 }) {
   const [isTitleEdit, setTitleEdit] = useState(false)
   const [title, setTitle] = useState(logbook.title)
@@ -26,7 +24,7 @@ export function LogbookExperience({
         />
         <button
           onClick={() => {
-            onrename(title)
+            actions.rename(logbook.id, title)
             setTitleEdit(false)
           }}
         >
@@ -49,7 +47,7 @@ export function LogbookExperience({
         >
           rename
         </button>
-        <button onClick={ondelete}>delete</button>
+        <button onClick={() => actions.delete(logbook.id)}>delete</button>
       </FlexRow>
     </FlexColumn>
   )

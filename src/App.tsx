@@ -19,11 +19,7 @@ export function App() {
             {list.items.map((logbook) => (
               <FlexRow key={logbook.id}>
                 <ListItem>
-                  <LogbookExperience
-                    logbook={logbook}
-                    ondelete={() => actions.delete(logbook.id)}
-                    onrename={(title) => actions.rename(logbook.id, title)}
-                  />
+                  <LogbookExperience actions={actions} logbook={logbook} />
                 </ListItem>
               </FlexRow>
             ))}
