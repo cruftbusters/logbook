@@ -1,5 +1,5 @@
 import { SetStateAction, useState, useEffect } from 'react'
-import { LogbookList } from './types'
+import { Actions, LogbookList } from './types'
 import { idb } from './idb'
 
 export function useLogbooks() {
@@ -46,9 +46,7 @@ export function useLogbooks() {
     setUpdatedByUser(true)
   }
 
-  return {
-    list,
-    status,
+  const actions: Actions = {
     create() {
       setByUser((list) => ({
         items: [
@@ -64,7 +62,7 @@ export function useLogbooks() {
       setByUser((list) => ({
         items: list.items.map((item) => {
           if (item.id === id) {
-            return { id, title }
+            return { ...item, title }
           }
           return item
         }),
@@ -75,6 +73,12 @@ export function useLogbooks() {
         items: list.items.filter((item) => item.id !== id),
       }))
     },
+  }
+
+  return {
+    actions,
+    list,
+    status,
   }
 }
 

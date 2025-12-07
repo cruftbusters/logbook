@@ -4,7 +4,7 @@ import { LogbookExperience } from './LogbookExperience'
 import './App.css'
 
 export function App() {
-  const { list, status, ...actions } = useLogbooks()
+  const { actions, list, status } = useLogbooks()
 
   return (
     <FlexColumn style={{ gap: '1em' }}>
