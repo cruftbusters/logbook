@@ -49,6 +49,9 @@ export function LogbookExperience({
           Rename
         </button>
         <button onClick={() => actions.delete(logbook.id)}>Delete</button>
+      </FlexRow>
+      <h3>Sheets</h3>
+      <FlexRow>
         <button onClick={() => actions.createSheet(logbook.id)}>
           Create sheet
         </button>

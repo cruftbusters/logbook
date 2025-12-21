@@ -15,7 +15,7 @@ export function SheetExperience({
   const [isTitleEdit, setTitleEdit] = useState(false)
   return (
     <FlexColumn>
-      <h3>{sheet.title}</h3>
+      <h4>{sheet.title}</h4>
       <FlexRow hidden={!isTitleEdit}>
         <input
           aria-label="name"
