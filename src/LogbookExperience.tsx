@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Actions, Logbook } from './types'
-import { FlexColumn, FlexRow, List, ListItem } from './FlexList'
-import { SheetExperience } from './SheetExperience'
+import { FlexColumn, FlexRow } from './FlexList'
+import { SheetList } from './SheetList'
 
 export function LogbookExperience({
   actions,
@@ -50,23 +50,9 @@ export function LogbookExperience({
         </button>
         <button onClick={() => actions.delete(logbook.id)}>Delete</button>
       </FlexRow>
-      <h3>Sheets</h3>
       <FlexRow>
-        <button onClick={() => actions.createSheet(logbook.id)}>
-          Create sheet
-        </button>
+        <SheetList actions={actions} logbook={logbook} />
       </FlexRow>
-      <List>
-        {logbook.sheets.map((sheet) => (
-          <ListItem key={sheet.id}>
-            <SheetExperience
-              actions={actions}
-              logbook={logbook}
-              sheet={sheet}
-            />
-          </ListItem>
-        ))}
-      </List>
     </FlexColumn>
   )
 }
