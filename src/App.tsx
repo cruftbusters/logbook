@@ -9,11 +9,11 @@ export function App() {
   return (
     <FlexColumn style={{ gap: '1em' }}>
       <h1>
-        <a href="/">logbook</a>
+        <a href="/">Logbook</a>
       </h1>
       <div role="status">{status}</div>
       <div>
-        <button onClick={actions.create}>create logbook</button>
+        <button onClick={actions.create}>Create logbook</button>
       </div>
       <FlexRow>
         <List>

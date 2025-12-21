@@ -29,7 +29,7 @@ export function SheetExperience({
             setTitleEdit(false)
           }}
         >
-          accept
+          Accept
         </button>
         <button
           onClick={() => {
@@ -37,13 +37,13 @@ export function SheetExperience({
             setTitleEdit(false)
           }}
         >
-          discard
+          Discard
         </button>
       </FlexRow>
       <FlexRow>
-        <button onClick={() => setTitleEdit(true)}>rename</button>
+        <button onClick={() => setTitleEdit(true)}>Rename</button>
         <button onClick={() => actions.deleteSheet(logbook.id, sheet.id)}>
-          delete
+          Delete
         </button>
       </FlexRow>
     </FlexColumn>

@@ -29,7 +29,7 @@ export function LogbookExperience({
             setTitleEdit(false)
           }}
         >
-          accept
+          Accept
         </button>
         <button
           onClick={() => {
@@ -37,7 +37,7 @@ export function LogbookExperience({
             setTitleEdit(false)
           }}
         >
-          discard
+          Discard
         </button>
       </FlexRow>
       <FlexRow>
@@ -46,11 +46,11 @@ export function LogbookExperience({
             setTitleEdit(true)
           }}
         >
-          rename
+          Rename
         </button>
-        <button onClick={() => actions.delete(logbook.id)}>delete</button>
+        <button onClick={() => actions.delete(logbook.id)}>Delete</button>
         <button onClick={() => actions.createSheet(logbook.id)}>
-          create sheet
+          Create sheet
         </button>
       </FlexRow>
       <List>
