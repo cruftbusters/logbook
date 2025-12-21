@@ -3,7 +3,7 @@ import { Actions, Logbook } from './types'
 import { FlexColumn, FlexRow } from './FlexList'
 import { SheetList } from './SheetList'
 
-export function LogbookExperience({
+export function LogbookView({
   actions,
   logbook,
 }: {

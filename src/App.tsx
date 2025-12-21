@@ -1,6 +1,6 @@
 import { useLogbooks } from './useLogbooks'
 import { FlexRow, FlexColumn, List, ListItem } from './FlexList'
-import { LogbookExperience } from './LogbookExperience'
+import { LogbookView } from './LogbookView'
 import './App.css'
 
 export function App() {
@@ -21,7 +21,7 @@ export function App() {
             {list.items.map((logbook) => (
               <FlexRow key={logbook.id}>
                 <ListItem>
-                  <LogbookExperience actions={actions} logbook={logbook} />
+                  <LogbookView actions={actions} logbook={logbook} />
                 </ListItem>
               </FlexRow>
             ))}
