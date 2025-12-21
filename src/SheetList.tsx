@@ -1,5 +1,5 @@
 import { FlexRow, FlexColumn, List, ListItem } from './FlexList'
-import { SheetExperience } from './SheetExperience'
+import { SheetView } from './SheetView'
 import { Actions, Logbook } from './types'
 
 export function SheetList({
@@ -20,11 +20,7 @@ export function SheetList({
       <List>
         {logbook.sheets.map((sheet) => (
           <ListItem key={sheet.id}>
-            <SheetExperience
-              actions={actions}
-              logbook={logbook}
-              sheet={sheet}
-            />
+            <SheetView actions={actions} logbook={logbook} sheet={sheet} />
           </ListItem>
         ))}
       </List>

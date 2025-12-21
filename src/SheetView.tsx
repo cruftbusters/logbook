@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { FlexColumn, FlexRow } from './FlexList'
 import { Actions, Logbook, Sheet } from './types'
 
-export function SheetExperience({
+export function SheetView({
   actions,
   logbook,
   sheet,
