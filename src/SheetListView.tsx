@@ -2,7 +2,7 @@ import { FlexRow, FlexColumn, List, ListItem } from './FlexList'
 import { SheetView } from './SheetView'
 import { Actions, Logbook } from './types'
 
-export function SheetList({
+export function SheetListView({
   actions,
   logbook,
 }: {

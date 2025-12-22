@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { Actions, Logbook } from './types'
 import { FlexColumn, FlexRow } from './FlexList'
-import { SheetList } from './SheetList'
+import { Actions, Logbook } from './types'
+import { SheetListView } from './SheetListView'
 
 export function LogbookView({
   actions,
@@ -51,7 +51,7 @@ export function LogbookView({
         <button onClick={() => actions.delete(logbook.id)}>Delete</button>
       </FlexRow>
       <FlexRow>
-        <SheetList actions={actions} logbook={logbook} />
+        <SheetListView actions={actions} logbook={logbook} />
       </FlexRow>
     </FlexColumn>
   )
