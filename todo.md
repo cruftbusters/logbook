@@ -24,21 +24,12 @@
 
 ## local persistence
 
-1. Logbook modifications are persisted beyond tab close and reopen
+1. ~Logbook modifications are persisted beyond tab close and reopen~
 1. If more than one tab is open then only one tab is active; the others are blocked from making changes
 
 ## navigator
 
 1. ~~List, create, rename, and delete logbooks~~
-
-## editor
-
-The editor enables modifying sheets. Logbooks are collections of named sheets. Sheets are ordered lists of transfers. Transfers are dated movements of amounts from a credit account to a debit account. Amounts have an optional prefix and optional suffix.
-
-1. create, rename, and delete sheets
-1. edit transfers
-1. import delimited text to new sheet
-1. transport logbook to and from text
 
 ## summarizer
 
@@ -48,6 +39,15 @@ The summarizer reduces a logbook to a statement of accounts. The most simple sum
 1. filter by date (January 2025, this month, month to date, quarter to date, year to date)
 1. timeseries balance and deltas (monthly, quarterly, yearly)
 1. summary arithmetic
+
+## editor
+
+The editor enables modifying sheets. Logbooks are collections of named sheets. Sheets are ordered lists of transfers. Transfers are dated movements of amounts from a credit account to a debit account. Amounts have an optional prefix and optional suffix.
+
+1. create, rename, and delete sheets
+1. edit transfers
+1. import delimited text to new sheet
+1. transport logbook to and from text
 
 ## evidence
 
