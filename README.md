@@ -1,5 +1,3 @@
 # logbook
 
-Logbook is an accounting tool.
-
-Maybe check todo.md next.
+This repo has moved to https://github.com/cruftbusters/logbooks.
