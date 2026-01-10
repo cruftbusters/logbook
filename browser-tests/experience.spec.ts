@@ -103,3 +103,17 @@ test('manage sheets', async ({ page }) => {
 
   await sheet.getByRole('button', { name: 'delete' }).click()
 })
+
+test('summary', async ({ page }) => {
+  await page.goto('http://vite.localhost:8080')
+
+  await page.getByRole('button', { name: 'create logbook' }).click()
+
+  const article = page.getByRole('article')
+
+  const heading = page.getByRole('heading').filter({ hasText: 'Summary' })
+
+  const summary = article.filter({ has: heading })
+
+  await expect(summary).toBeVisible()
+})

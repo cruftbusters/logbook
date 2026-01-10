@@ -51,6 +51,11 @@ export function LogbookView({
         <button onClick={() => actions.delete(logbook.id)}>Delete</button>
       </FlexRow>
       <FlexRow>
+        <article>
+          <h3>Summary</h3>
+        </article>
+      </FlexRow>
+      <FlexRow>
         <SheetListView actions={actions} logbook={logbook} />
       </FlexRow>
     </FlexColumn>
