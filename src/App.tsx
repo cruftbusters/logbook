@@ -8,10 +8,10 @@ export function App() {
 
   return (
     <FlexColumn style={{ gap: '1em' }}>
-      <h1>
-        <a href="/">Logbook</a>
-      </h1>
       <div role="status">{status}</div>
+      <h1>
+        <a href="/">Logbooks</a>
+      </h1>
       <div>
         <button onClick={actions.create}>Create logbook</button>
       </div>

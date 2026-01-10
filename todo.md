@@ -19,8 +19,8 @@
 ## wireframe
 
 1. ~~List, create, rename, and delete logbooks~~
-2. rename logbook to logbooks
-3. move status to footer
+2. ~rename logbook to logbooks~
+3. ~move status to page top~
 
 ## summary
 
